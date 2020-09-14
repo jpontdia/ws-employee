@@ -1,0 +1,9 @@
+server:
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/jpworksdb
+    username: developer_dba
+    password: password
