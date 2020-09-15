@@ -1,11 +1,13 @@
 server:
+  port: 8080
   error:
     include-message: always
 
 spring:
+  profiles:
+    active: local
+
   datasource:
-    #host.docker.internal
-    #url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/jpworksdb
-    url: jdbc:mysql://host.docker.internal:3306/jpworksdb
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/jpworksdb
     username: developer_dba
     password: password
