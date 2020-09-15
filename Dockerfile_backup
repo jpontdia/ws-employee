@@ -1,0 +1,15 @@
+FROM adoptopenjdk/openjdk14:jre
+
+ENV APPNAME=ws-employee
+
+RUN mkdir -p /opt/$APPNAME
+RUN mkdir -p /var/log/$APPNAME
+
+COPY target/$APPNAME-1.0.0.jar /opt/$APPNAME/$APPNAME.jar
+COPY src/main/scripts/startup.sh /opt/$APPNAME/startup.sh
+
+RUN chmod 770 /opt/$APPNAME/startup.sh
+
+ENTRYPOINT ["/opt/ws-employee/startup.sh"]
+
+EXPOSE 8080
