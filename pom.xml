@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>14</java.version>
+		<springboot.version>2.3.3.RELEASE</springboot.version>
 	</properties>
 
 	<dependencies>
@@ -27,7 +28,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -45,12 +45,19 @@
 			</exclusions>
 		</dependency>
 
-		<!-- MySQL -->
+		<!-- PostgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- MySQL
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency>  -->
 
 		<!-- swagger -->
 		<dependency>
@@ -66,7 +73,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.3.3.RELEASE</version>
+				<version>${springboot.version}</version>
 				<executions>
 					<execution>
 						<goals>

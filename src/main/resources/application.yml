@@ -3,11 +3,15 @@ server:
   error:
     include-message: always
 
+logging:
+  level:
+    root: INFO
+
 spring:
   profiles:
     active: local
 
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/jpworksdb
-    username: developer_dba
-    password: password
+    url: ${DATABASE_URL:my-database-url}
+    username: ${DATABASE_USER:my-database-user}
+    password: ${DATABASE_PASS:my-database-password}
