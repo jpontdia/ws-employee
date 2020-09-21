@@ -5,8 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class Employees {
@@ -18,6 +18,9 @@ public class Employees {
     private LocalDate hireDate;
     private String gender;
 
-    @MappedCollection(idColumn = "employee_number")
-    Set<Salaries> salaries = new HashSet<>();
+    @MappedCollection(idColumn = "employee_number", keyColumn = "from_date")
+    Map<LocalDate, Salaries> salaries = new HashMap<>();
+
+    @MappedCollection(idColumn = "employee_number", keyColumn = "from_date")
+    Map<LocalDate, Addresses> addresses = new HashMap<>();
 }
