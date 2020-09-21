@@ -17,8 +17,6 @@ The tech stack for this POC is:
 * Docker - https://www.docker.com/products/docker-desktop
 * Postgresql - https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
-
-
 ### Database
 Next is the database entity model:
 
@@ -26,5 +24,7 @@ Next is the database entity model:
 
 The database script is here [script](/doc/database.sql)
 
-### open
+### SwaggerUI
+The Swagger UI is available at - http://localhost:8080/swagger-ui.html
+
 
