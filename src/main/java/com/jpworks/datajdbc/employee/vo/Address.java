@@ -1,11 +1,13 @@
-package com.jpworks.datajdbc.employee.controller;
+package com.jpworks.datajdbc.employee.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-public class Addresses {
+@Builder
+public class Address {
     private LocalDate fromDate;
     private LocalDate toDate;
     private String address;

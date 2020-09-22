@@ -6,6 +6,9 @@ server:
 logging:
   level:
     root: INFO
+    com:
+      jpworks:
+        datajdbc: DEBUG
     sql: DEBUG
 
 spring:
