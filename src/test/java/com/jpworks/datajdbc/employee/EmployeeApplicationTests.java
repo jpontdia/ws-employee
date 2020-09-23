@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -105,5 +106,35 @@ class EmployeeApplicationTests {
 		});
 		log.info("Exception message: {}", exception.getMessage());
 		assertTrue(exception.getMessage().contains("Failed to execute DbAction.UpdateRoot"));
+	}
+
+	@Test
+	void findByLastName(){
+		Employee employee1 = Employee.builder()
+				.firstName("Jhon 1")
+				.lastName("MyFakeLastName")
+				.birthDate(LocalDate.now())
+				.hireDate(LocalDate.now())
+				.gender(Gender.M)
+				.status(EmployeeStatus.I)
+				.build();
+		employeeRepository.save(employee1);
+
+		Employee employee2 = Employee.builder()
+				.firstName("Jhon 2")
+				.lastName("MyFakeLastName")
+				.birthDate(LocalDate.now())
+				.hireDate(LocalDate.now())
+				.gender(Gender.M)
+				.status(EmployeeStatus.I)
+				.build();
+		employeeRepository.save(employee2);
+
+		List<Employee> listEmployee = employeeRepository.findByLastName("MyFakeLastName");
+		log.info("Employee's found: {}", listEmployee);
+		assertThat(listEmployee.size()).isEqualTo(2);
+
+		employeeRepository.delete(employee1);
+		employeeRepository.delete(employee2);
 	}
 }
