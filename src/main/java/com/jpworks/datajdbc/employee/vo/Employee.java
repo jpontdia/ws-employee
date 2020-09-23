@@ -17,6 +17,7 @@ public class Employee {
     private String lastName;
     private LocalDate birthDate;
     private LocalDate hireDate;
+    private String phone;
     private Gender gender;
     private EmployeeStatus status;
 
