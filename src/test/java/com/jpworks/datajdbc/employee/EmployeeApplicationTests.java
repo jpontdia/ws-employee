@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 @SpringBootTest
@@ -89,4 +91,19 @@ class EmployeeApplicationTests {
 		log.info("Current number of employee records: {}", recordsAfterDelete);
 	}
 
+	@Test
+	void optimisticLocking() {
+		Exception exception = assertThrows(org.springframework.data.relational.core.conversion.DbActionExecutionException.class, () -> {
+			employeeRepository.findById(13L).ifPresent( employeeFirstThread -> {
+				employeeFirstThread.setPhone("222");
+				employeeRepository.findById(13L).ifPresent( employeeSecondThread -> {
+					employeeSecondThread.setPhone("333");
+					employeeRepository.save(employeeSecondThread);
+					employeeRepository.save(employeeFirstThread);
+				});
+			});
+		});
+		log.info("Exception message: {}", exception.getMessage());
+		assertTrue(exception.getMessage().contains("Failed to execute DbAction.UpdateRoot"));
+	}
 }

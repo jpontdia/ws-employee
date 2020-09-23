@@ -3,6 +3,7 @@ package com.jpworks.datajdbc.employee.vo;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.LocalDate;
@@ -20,6 +21,9 @@ public class Employee {
     private String phone;
     private Gender gender;
     private EmployeeStatus status;
+
+    @Version
+    private Integer version;
 
     @MappedCollection(keyColumn = "from_date")
     Map<LocalDate, Salary> salaries;
